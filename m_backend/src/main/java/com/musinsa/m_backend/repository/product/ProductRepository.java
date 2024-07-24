@@ -2,6 +2,7 @@ package com.musinsa.m_backend.repository.product;
 
 import com.musinsa.m_backend.entity.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -26,5 +27,10 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
     @Query("SELECT p FROM ProductEntity p WHERE p.brand.brandIdx = :brandIdx AND p.category.categoryIdx = :categoryIdx ORDER BY p.productPrice ASC LIMIT 1")
     Optional<ProductEntity> findMinPriceProductByBrandIdxAndCategoryIdx(@Param("brandIdx") Long brandIdx, @Param("categoryIdx") Long categoryIdx);
+
+    @Modifying
+    @Query("UPDATE ProductEntity p SET p.useYn = false, p.deleteDt = CURRENT_TIMESTAMP WHERE p.productIdx = :productIdx")
+    void deleteProductByProductIdx(@Param("productIdx") Long productIdx);
+
 
 }

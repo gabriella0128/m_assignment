@@ -36,4 +36,9 @@ public class BrandService {
 
         return brandMapper.toInfoDto(saved);
     }
+
+    @Transactional
+    public void deleteBrand(Long brandIdx){
+        brandRepository.deleteBrandByBrandIdx(brandIdx);
+    }
 }

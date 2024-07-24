@@ -119,6 +119,27 @@ public class ProductProcessService {
     }
 
     public ProductProcessDto.ProductProcessResponse deleteProduct(ProductProcessDto.ProductDeleteRequest request) {
+        try {
+            ProductDto.Info foundProduct = productService.findProductByProductIdx(request.getProductIdx());
+
+            if(Objects.isNull(foundProduct)){
+                return ProductProcessDto.ProductProcessResponse.builder()
+                    .result(false)
+                    .reason("Product Not Found").build();
+            }
+
+            productService.deleteProduct(foundProduct.getProductIdx());
+
+            return ProductProcessDto.ProductProcessResponse.builder()
+                .result(true)
+                .reason("SUCCESS")
+                .build();
+
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return ProductProcessDto.ProductProcessResponse.builder()
                 .result(false)
                 .reason("Unexpected Error").build();

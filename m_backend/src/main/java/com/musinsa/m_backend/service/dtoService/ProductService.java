@@ -55,4 +55,9 @@ public class ProductService {
 
         return productMapper.toInfoDto(saved);
     }
+
+    @Transactional
+    public void deleteProduct(Long productIdx){
+        productRepository.deleteProductByProductIdx(productIdx);
+    }
 }

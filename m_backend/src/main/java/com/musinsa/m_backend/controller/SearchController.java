@@ -28,6 +28,7 @@ public class SearchController {
 
     @GetMapping("/lowestAndHighestPricesForACategory")
     public ResponseEntity<SearchDto.SearchHighestAndLowestPriceProductsForCategoryResponse> getLowestAndHighestPriceProductsForCategory(@RequestParam("categoryName") final String categoryName) {
+        System.out.println(" ::::: " + categoryName);
         return ResponseEntity.ok().body(searchService.searchHighestAndLowestPriceProductsForCategory(categoryName));
 
     }
