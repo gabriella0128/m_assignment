@@ -26,4 +26,9 @@ public class CategoryService {
         return categoryMapper.toInfoDto(categoryRepository.findCategoryByCategoryIdx(categoryIdx).orElse(null));
     }
 
+    @Transactional(readOnly = true)
+    public CategoryDto.Info findCategoryByCategoryName(String categoryName) {
+        return categoryMapper.toInfoDto(categoryRepository.findCategoryByCategoryName(categoryName).orElse(null));
+    }
+
 }

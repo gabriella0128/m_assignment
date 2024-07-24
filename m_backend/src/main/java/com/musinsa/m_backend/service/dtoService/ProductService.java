@@ -28,7 +28,7 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public ProductDto.Info findMaxPriceProductByCategoryId(Long categoryIdx){
+    public ProductDto.Info findMaxPriceProductByCategoryIdx(Long categoryIdx){
         return productMapper.toInfoDto(productRepository.findMaxPriceProductByCategoryIdx(categoryIdx).orElse(null));
     }
 
