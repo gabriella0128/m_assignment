@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -15,6 +17,11 @@ public class BrandService {
 
     private final BrandRepository brandRepository;
     private final BrandMapper brandMapper;
+
+    @Transactional(readOnly = true)
+    public List<BrandDto.Info> findAll(){
+        return brandMapper.toInfoDto(brandRepository.findAll());
+    }
 
     @Transactional(readOnly = true)
     public BrandDto.Info findBrandByBrandIdx(Long brandIdx) {

@@ -7,12 +7,19 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CategoryService {
 
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
+
+    @Transactional(readOnly = true)
+    public List<CategoryDto.Info> findAll(){
+        return categoryMapper.toInfoDto(categoryRepository.findAll());
+    }
 
     @Transactional(readOnly = true)
     public CategoryDto.Info findCategoryByCategoryIdx(Long categoryIdx) {

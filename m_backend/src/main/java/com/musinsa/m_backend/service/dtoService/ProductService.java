@@ -33,8 +33,18 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public ProductDto.Info findMinPriceProductByCategoryId(Long categoryIdx){
+    public ProductDto.Info findMinPriceProductByCategoryIdx(Long categoryIdx){
         return productMapper.toInfoDto(productRepository.findMinPriceProductByCategoryIdx(categoryIdx).orElse(null));
+    }
+
+    @Transactional(readOnly = true)
+    public Boolean existProductByBrandIdxAndCategoryIdx(Long brandIdx, Long categoryIdx){
+        return productRepository.existsProductEntitiesByBrandIdxAndCategoryIdx(brandIdx, categoryIdx);
+    }
+
+    @Transactional(readOnly = true)
+    public ProductDto.Info findMinPriceProductByBrandIdxAndCategoryIdx(Long brandIdx, Long categoryIdx){
+        return productMapper.toInfoDto(productRepository.findMinPriceProductByBrandIdxAndCategoryIdx(brandIdx, categoryIdx).orElse(null));
     }
 
     @Transactional
