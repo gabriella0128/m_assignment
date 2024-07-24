@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 @Service
 @RequiredArgsConstructor
 public class BrandService {
@@ -24,8 +25,8 @@ public class BrandService {
     public BrandDto.Info save(BrandDto.Info brand) {
         BrandEntity brandEntity = brandMapper.fromInfoToEntity(brand);
 
-        brandRepository.save(brandEntity);
+        BrandEntity saved = brandRepository.save(brandEntity);
 
-        return brand;
+        return brandMapper.toInfoDto(saved);
     }
 }
