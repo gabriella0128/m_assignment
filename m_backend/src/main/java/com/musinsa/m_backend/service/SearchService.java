@@ -21,14 +21,7 @@ public class SearchService {
     private final BrandService brandService;
     private final CategoryService categoryService;
 
-    List<BrandDto.Info> brands = brandService.findAll();
-    List<CategoryDto.Info> categories = categoryService.findAll();
-
-    Set<Long> categoryIdxs = categories.stream()
-            .map(CategoryDto.Info::getCategoryIdx)
-            .collect(Collectors.toSet());
-
-    private List<Long> findBrandsWithAllCategories(){
+    private List<Long> findBrandsWithAllCategories(List<BrandDto.Info> brands, Set<Long> categoryIdxs){
 
         return brands.stream()
                 .map(BrandDto.Info::getBrandIdx)
@@ -50,7 +43,14 @@ public class SearchService {
 
     public SearchDto.SearchCheapestCodiBrandResponse searchCheapestCodiBrand(){
         try {
-            List<Long> brandsWithAllCategories = findBrandsWithAllCategories();
+            List<BrandDto.Info> brands = brandService.findAll();
+            List<CategoryDto.Info> categories = categoryService.findAll();
+
+            Set<Long> categoryIdxs = categories.stream()
+                    .map(CategoryDto.Info::getCategoryIdx)
+                    .collect(Collectors.toSet());
+
+            List<Long> brandsWithAllCategories = findBrandsWithAllCategories(brands, categoryIdxs);
 
             if (brandsWithAllCategories.isEmpty()) {
                 return SearchDto.SearchCheapestCodiBrandResponse.builder()
