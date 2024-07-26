@@ -25,7 +25,9 @@ const BrandSelect = ({ selectedIdx, onSelectChange }) => {
     }, []);
 
     useEffect(() => {
-        setSelected(selectedIdx);
+        if (selectedIdx !== undefined) {
+            setSelected(selectedIdx);
+        }
     }, [selectedIdx]);
 
     const handleChange = (e) => {
