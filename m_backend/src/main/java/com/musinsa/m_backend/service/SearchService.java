@@ -160,6 +160,13 @@ public class SearchService {
             ProductDto.Info minPriceProduct = productService.findMinPriceProductByCategoryIdx(category.getCategoryIdx());
             ProductDto.Info maxPriceProduct = productService.findMaxPriceProductByCategoryIdx(category.getCategoryIdx());
 
+            if(Objects.isNull(minPriceProduct) || Objects.isNull(maxPriceProduct)){
+                return SearchDto.SearchHighestAndLowestPriceProductsForCategoryResponse.builder()
+                    .result(false)
+                    .reason("No Product Found")
+                    .build();
+            }
+
             SearchDto.HighestOrLowestPriceItem lowestPriceItem = SearchDto.HighestOrLowestPriceItem.builder()
                     .brandIdx(minPriceProduct.getBrandIdx())
                     .brandName(brandService.findBrandByBrandIdx(minPriceProduct.getBrandIdx()).getBrandName())

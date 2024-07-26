@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import CheapestProductsPerCategory from './Search/CheapestProductsPerCategory';
 import CheapestCodiBrand from './Search/CheapestCodiBrand';
+import LowestAndHighestPricesForACategory from './Search/LowestAndHighestPricesForACategory';
 
 const UserMain = (props) => {
     return (
@@ -20,7 +21,7 @@ const UserMain = (props) => {
                     <CheapestCodiBrand/>
                 </Tab>
                 <Tab eventKey="lowestAndHighestPricesForACategory" title="카테고리 검색(최저가, 최고가)">
-                    Tab content for Contact
+                    <LowestAndHighestPricesForACategory/>
                 </Tab>
                 </Tabs>
             </div>

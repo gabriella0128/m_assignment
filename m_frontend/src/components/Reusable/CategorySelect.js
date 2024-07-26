@@ -30,11 +30,14 @@ const CategorySelect = ({ selectedIdx, onSelectChange }) => {
     }, [selectedIdx]);
 
     const handleChange = (e) => {
-        const newSelectedIdx = e.target.value;
-        setSelected(newSelectedIdx);
-        if (onSelectChange) {
-          onSelectChange(newSelectedIdx);
-        }
+      const selectedOption = e.target.options[e.target.selectedIndex];
+      const categoryIdx = e.target.value;
+      const categoryName = selectedOption.getAttribute('data-name');
+
+      setSelected(categoryIdx);
+      if (onSelectChange) {
+          onSelectChange({ categoryIdx, categoryName });
+      }
     };
   
     if (loading) {
@@ -49,7 +52,7 @@ const CategorySelect = ({ selectedIdx, onSelectChange }) => {
       <Form.Select aria-label="Default select example" name="categoryIdx" value={selected} onChange={handleChange}>
         <option value="">카테고리</option>
         {categories.map((category) => (
-          <option key={category.categoryIdx} value={category.categoryIdx}>
+          <option key={category.categoryIdx} value={category.categoryIdx} data-name={category.categoryName}>
             {category.categoryName}
           </option>
         ))}

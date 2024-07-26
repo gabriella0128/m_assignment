@@ -4,13 +4,22 @@ import {Link, useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert  from 'react-bootstrap/Alert';
-import BrandSelect from './reusable/BrandSelect';
-import CategorySelect from './reusable/CategorySelect';
+import BrandSelect from '../../Reusable/BrandSelect'
+import CategorySelect from '../../Reusable/CategorySelect';
 
 
 const ProductCreate = () => {
     const [brandSelectedIdx, setBrandSelectedIdx] = useState();
     const [categorySelectedIdx, setCategorySelectedIdx] = useState();
+
+    const [formData, setFormData] = useState({
+      brandIdx: '',
+      categoryIdx : '',
+      productName: '',
+      productPrice : 0,
+      productDesc : ''
+
+  });
 
     const handleBrandSelectChange = (newBrandSelectedIdx) => {
         setFormData({
@@ -20,22 +29,15 @@ const ProductCreate = () => {
         setBrandSelectedIdx(newBrandSelectedIdx);
     };
 
-    const handleCategorySelectChange = (newCategorySelectedIdx) => {
+    const handleCategorySelectChange = (selectedCategory) => {
+      const { categoryIdx } = selectedCategory;      
         setFormData({
             ...formData,
-            "categoryIdx": newCategorySelectedIdx
+            "categoryIdx": categoryIdx
         });
-        setCategorySelectedIdx(newCategorySelectedIdx);
+        setCategorySelectedIdx(categoryIdx);
     };
 
-    const [formData, setFormData] = useState({
-        brandIdx: '',
-        categoryIdx : '',
-        productName: '',
-        productPrice : 0,
-        productDesc : ''
-
-    });
 
     const [formErrors, setFormErrors] = useState('');
     const [submitted, setSubmitted] = useState(false);
