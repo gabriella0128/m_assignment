@@ -118,9 +118,9 @@ public class ProductProcessService {
 
     }
 
-    public ProductProcessDto.ProductProcessResponse deleteProduct(ProductProcessDto.ProductDeleteRequest request) {
+    public ProductProcessDto.ProductProcessResponse deleteProduct(Long productIdx) {
         try {
-            ProductDto.Info foundProduct = productService.findProductByProductIdx(request.getProductIdx());
+            ProductDto.Info foundProduct = productService.findProductByProductIdx(productIdx);
 
             if(Objects.isNull(foundProduct)){
                 return ProductProcessDto.ProductProcessResponse.builder()

@@ -1,16 +1,13 @@
 import {Link} from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 const Home = (props) => {
 
     return(
-        <div>
-            <div>
-                <Link to='/admin'><button>admin</button></Link>
-            </div>
-            <div>
-                <Link to='/user'><button>user</button></Link>
-            </div>
-      </div> 
+        <div className="d-grid gap-2">
+                <Link to='/admin'><Button variant="info">admin</Button></Link>
+                <Link to='/user'><Button variant="info">user</Button></Link>
+        </div> 
     )
 }
 

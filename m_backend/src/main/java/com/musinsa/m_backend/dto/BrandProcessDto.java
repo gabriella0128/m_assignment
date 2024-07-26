@@ -2,6 +2,8 @@ package com.musinsa.m_backend.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 public class BrandProcessDto {
 
     @Getter
@@ -16,16 +18,6 @@ public class BrandProcessDto {
         private String brandImage;
         private String brandDesc;
 
-    }
-
-    @Getter
-    @ToString
-    @Builder
-    @EqualsAndHashCode
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class BrandDeleteRequest {
-        private Long brandIdx;
     }
 
     @Getter

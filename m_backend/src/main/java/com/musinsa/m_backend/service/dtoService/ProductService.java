@@ -18,6 +18,11 @@ public class ProductService {
     private final ProductMapper productMapper;
 
     @Transactional(readOnly = true)
+    public List<ProductDto.Info> findAll(){
+        return productMapper.toInfoDto(productRepository.findAll());
+    }
+
+    @Transactional(readOnly = true)
     public ProductDto.Info findProductByProductIdx(Long productIdx) {
         return productMapper.toInfoDto(productRepository.findProductByProductIdx(productIdx).orElse(null));
     }

@@ -75,9 +75,9 @@ public class BrandProcessService {
 
     }
 
-    public BrandProcessDto.BrandProcessResponse deleteBrand(BrandProcessDto.BrandDeleteRequest request){
+    public BrandProcessDto.BrandProcessResponse deleteBrand(Long brandIdx){
         try {
-            BrandDto.Info foundBrand = brandService.findBrandByBrandIdx(request.getBrandIdx());
+            BrandDto.Info foundBrand = brandService.findBrandByBrandIdx(brandIdx);
 
             if(Objects.isNull(foundBrand)){
                 return BrandProcessDto.BrandProcessResponse.builder()
