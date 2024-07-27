@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 
 const CheapestCodiBrand = () => {
     const [data, setData] = useState({
+        'dataFetchResult' : false,
         'brandName' : '',
         'itemList' : [],
         'totalPrice' : 0
@@ -41,7 +42,7 @@ const CheapestCodiBrand = () => {
 
 
   return(
-    <div>
+    <div>{ data.dataFetchResult ? <div>
         <div>
             <p>브랜드명 : {data.brandName}</p>
         </div>
@@ -70,7 +71,10 @@ const CheapestCodiBrand = () => {
         </div>
         
     </div>
-    
+     : <div>
+        <p>결과 없음</p>
+     </div>}
+    </div>
     )
 }
 
