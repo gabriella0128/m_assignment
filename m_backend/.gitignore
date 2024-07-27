@@ -35,3 +35,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### H2 Database ###
+/src/main/resources/h2-database/*
+!/src/main/resources/h2-database/testdb.mv.db
+!/src/main/resources/h2-database/testdb.trace.db

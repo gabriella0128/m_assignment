@@ -25,7 +25,6 @@ import com.musinsa.m_backend.service.CategoryReadService;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@ActiveProfiles("test")
 class CategoryControllerTest {
 	@Autowired
 	private MockMvc mockMvc;

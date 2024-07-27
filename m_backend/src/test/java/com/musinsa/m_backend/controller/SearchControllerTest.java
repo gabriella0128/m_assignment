@@ -25,7 +25,6 @@ import com.musinsa.m_backend.service.SearchService;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@ActiveProfiles("test")
 class SearchControllerTest {
 	@Autowired
 	private MockMvc mockMvc;

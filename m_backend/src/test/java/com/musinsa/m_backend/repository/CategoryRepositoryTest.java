@@ -18,7 +18,6 @@ import com.musinsa.m_backend.repository.category.CategoryRepository;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@ActiveProfiles("test")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @Transactional
 class CategoryRepositoryTest {

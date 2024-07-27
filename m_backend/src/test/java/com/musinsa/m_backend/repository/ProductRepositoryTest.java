@@ -23,7 +23,6 @@ import com.musinsa.m_backend.repository.product.ProductRepository;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@ActiveProfiles("test")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @Transactional
 class ProductRepositoryTest {
