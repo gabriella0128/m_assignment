@@ -17,11 +17,14 @@ const CheapestCodiBrand = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get('/api/search/cheapestCodiBrand');
-        setData({
-            'brandName' : response.data.brandName,
-            'itemList' : response.data.items,
-            'totalPrice' : response.data.totalPrice
-        });
+        if (response.data.result === true){
+          setData({
+              'dataFetchResult' : true,
+              'brandName' : response.data.brandName,
+              'itemList' : response.data.items,
+              'totalPrice' : response.data.totalPrice
+          });
+        }
       } catch (err) {
         setError(err.message);
       } finally {
