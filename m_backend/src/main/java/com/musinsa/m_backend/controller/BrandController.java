@@ -42,7 +42,6 @@ public class BrandController {
     @PatchMapping("/update")
     public ResponseEntity<BrandProcessDto.BrandProcessResponse> updateBrand(
             @RequestBody final BrandProcessDto.BrandUpsertRequest request) {
-        System.out.println(request);
         return ResponseEntity.ok().body(brandProcessService.updateBrand(request));
     }
 

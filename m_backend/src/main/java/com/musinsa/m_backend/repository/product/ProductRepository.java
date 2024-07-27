@@ -28,9 +28,17 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     @Query("SELECT p FROM ProductEntity p WHERE p.brand.brandIdx = :brandIdx AND p.category.categoryIdx = :categoryIdx ORDER BY p.productPrice ASC LIMIT 1")
     Optional<ProductEntity> findMinPriceProductByBrandIdxAndCategoryIdx(@Param("brandIdx") Long brandIdx, @Param("categoryIdx") Long categoryIdx);
 
-    @Modifying
+    @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Query("UPDATE ProductEntity p SET p.useYn = false, p.deleteDt = CURRENT_TIMESTAMP WHERE p.productIdx = :productIdx")
     void deleteProductByProductIdx(@Param("productIdx") Long productIdx);
+
+    @Query(value = "SELECT * FROM `product` p WHERE p.product_idx = :productIdx AND p.use_yn = false", nativeQuery = true)
+    Optional<ProductEntity> findDeletedProductByProductIdx(@Param("productIdx") Long productIdx);
+
+    //For Test Use Only
+    // @Modifying(clearAutomatically = true, flushAutomatically = true)
+    // @Query(value = "DELETE FROM ProductEntity p WHERE p.productIdx = :productIdx")
+    // void deleteProductCompletelyByProductIdx(@Param("productIdx") Long productIdx);
 
 
 }

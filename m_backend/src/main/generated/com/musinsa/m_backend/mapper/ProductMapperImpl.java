@@ -11,15 +11,15 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-07-24T09:10:49+0900",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.12 (Oracle Corporation)"
+    date = "2024-07-27T18:05:08+0900",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 18.0.2.1 (Oracle Corporation)"
 )
 @Component
 public class ProductMapperImpl implements ProductMapper {
 
     @Override
-    public ProductDto toDto(ProductEntity entity) {
-        if ( entity == null ) {
+    public ProductDto toDto(ProductEntity arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
@@ -29,8 +29,8 @@ public class ProductMapperImpl implements ProductMapper {
     }
 
     @Override
-    public ProductEntity toEntity(ProductDto dto) {
-        if ( dto == null ) {
+    public ProductEntity toEntity(ProductDto arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
@@ -40,13 +40,13 @@ public class ProductMapperImpl implements ProductMapper {
     }
 
     @Override
-    public List<ProductDto> getDtoList(List<ProductEntity> entityList) {
-        if ( entityList == null ) {
+    public List<ProductDto> getDtoList(List<ProductEntity> arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
-        List<ProductDto> list = new ArrayList<ProductDto>( entityList.size() );
-        for ( ProductEntity productEntity : entityList ) {
+        List<ProductDto> list = new ArrayList<ProductDto>( arg0.size() );
+        for ( ProductEntity productEntity : arg0 ) {
             list.add( toDto( productEntity ) );
         }
 

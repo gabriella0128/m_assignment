@@ -113,9 +113,13 @@ public class SearchService {
                     .map(CategoryDto.Info::getCategoryIdx)
                     .collect(Collectors.toSet());
 
-            List<ProductDto.Info> productList = categoryIdxs.stream().map(productService::findMinPriceProductByCategoryIdx).toList();
+            List<ProductDto.Info> productList = categoryIdxs.stream()
+                .map(productService::findMinPriceProductByCategoryIdx)
+                .filter(Objects::nonNull)
+                .toList();
 
-            Double totalPrice = productList.stream().mapToDouble(ProductDto.Info::getProductPrice).sum();
+            Double totalPrice = productList.stream()
+                .mapToDouble(ProductDto.Info::getProductPrice).sum();
 
             List<SearchDto.CheapestProductsPerCategoryItem> cheapestProductsPerCategoryItems = productList.stream().map(product -> SearchDto.CheapestProductsPerCategoryItem.builder()
                     .categoryIdx(product.getCategoryIdx())

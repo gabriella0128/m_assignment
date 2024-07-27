@@ -1,11 +1,8 @@
 spring:
-  profiles:
-    active: default
-
   datasource:
-    url: jdbc:h2:tcp://localhost/~/musinsa
+    url: jdbc:h2:mem:musinsa
     username: sa
-    password: pass
+    password:
     driver-class-name: org.h2.Driver
 
   jpa:

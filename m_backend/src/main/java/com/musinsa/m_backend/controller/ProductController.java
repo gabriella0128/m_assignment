@@ -35,7 +35,6 @@ public class ProductController {
 
     @PatchMapping("/update")
     public ResponseEntity<ProductProcessDto.ProductProcessResponse> updateProduct(@RequestBody final ProductProcessDto.ProductUpsertRequest request) {
-        System.out.println(" ::: " + request);
         return ResponseEntity.ok().body(productProcessService.updateProduct(request));
     }
 

@@ -11,9 +11,13 @@ import org.mapstruct.ReportingPolicy;
 import java.util.List;
 
 @Mapper(
-        componentModel = "spring",
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        unmappedSourcePolicy = ReportingPolicy.IGNORE)
+    componentModel = "spring",
+    unmappedTargetPolicy = ReportingPolicy.IGNORE,
+    unmappedSourcePolicy = ReportingPolicy.IGNORE,
+    uses = {
+        BrandMapper.class,
+        CategoryMapper.class,
+    })
 public interface ProductMapper extends GenericMapper<ProductDto, ProductEntity> {
 
     ProductEntity map(Long productIdx);
