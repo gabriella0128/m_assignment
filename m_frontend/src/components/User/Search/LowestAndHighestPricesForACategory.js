@@ -48,11 +48,11 @@ const LowestAndHighestPricesForACategory = () => {
                 .then(response => {
                     console.log(response);
                       if(response.data.result === true){
-                      setSearchResult({
-                        "searchResultFetch" : true,
-                        "lowestPriceItem" : response.data.lowestPriceItem,
-                        "highestPriceItem" : response.data.highestPriceItem
-                      })
+                        setSearchResult({
+                          "searchResultFetch" : true,
+                          "lowestPriceItem" : response.data.lowestPriceItem,
+                          "highestPriceItem" : response.data.highestPriceItem
+                        })
                     }else{
                       setSearchResult({
                         "searchResultFetch" : false,
