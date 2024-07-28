@@ -128,39 +128,48 @@ const ProductDetail = () => {
     return <div>Error: {error}</div>;
   }
   return (
-    <Form onSubmit={handleSubmit}>
-        {formErrors && <Alert variant="danger">{formErrors}</Alert>}
-        {submitted && <Alert variant="success">Form submitted successfully!</Alert>}
-      <Form.Group className="mb-3">
-        <Form.Label>상품 번호</Form.Label>
-        <Form.Control placeholder={formData.productIdx} name="productIdx" defaultValue={formData.productIdx} readOnly/>
-      </Form.Group>
-      <Form.Group className="mb-3">
-        <BrandSelect selectedIdx={brandSelectedIdx} onSelectChange={handleBrandSelectChange} />
-      </Form.Group>
-      <Form.Group className="mb-3">
-        <CategorySelect selectedIdx={categorySelectedIdx} onSelectChange={handleCategorySelectChange} />
-      </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>상품명</Form.Label>
-        <Form.Control type="text"  name="productName" defaultValue={formData.productName} onChange={handleChange}/>
-      </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>가격</Form.Label>
-        <Form.Control type="number"  name="productPrice" defaultValue={formData.productPrice} onChange={handleChange}/>
-      </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>상품 설명</Form.Label>
-        <Form.Control type="text" name="productDesc" defaultValue={formData.productDesc} onChange={handleChange}/>
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        수정
-      </Button>
-      <Button variant="primary" type="button" onClick={handleDelete}>
-        삭제
-      </Button>
-      <Link to='/admin/product'><Button variant="info">목록</Button></Link>
-    </Form>
+    <div className="wrapper">
+      <h5 className="mb-3">상품 상세 (수정, 삭제 가능)</h5>
+      <Form onSubmit={handleSubmit}>
+          {formErrors && <Alert variant="danger">{formErrors}</Alert>}
+          {submitted && <Alert variant="success">Form submitted successfully!</Alert>}
+        <div className='select-wrapper'>
+        <Form.Group className="mb-3">
+          <Form.Label>상품 번호</Form.Label>
+          <Form.Control className='readonly' placeholder={formData.productIdx} name="productIdx" defaultValue={formData.productIdx} readOnly/>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>브랜드</Form.Label>
+          <BrandSelect selectedIdx={brandSelectedIdx} onSelectChange={handleBrandSelectChange} />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>카테고리</Form.Label>
+          <CategorySelect selectedIdx={categorySelectedIdx} onSelectChange={handleCategorySelectChange} />
+        </Form.Group>
+        </div>
+        <Form.Group className="mb-3">
+          <Form.Label>상품명</Form.Label>
+          <Form.Control type="text"  name="productName" defaultValue={formData.productName} onChange={handleChange}/>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>가격</Form.Label>
+          <Form.Control type="number"  name="productPrice" defaultValue={formData.productPrice} onChange={handleChange}/>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>상품 설명</Form.Label>
+          <Form.Control type="text" name="productDesc" defaultValue={formData.productDesc} onChange={handleChange}/>
+        </Form.Group>
+        <div className='button-list gap-2'>
+          <Button className="admin-button" variant="primary" type="submit">
+            수정
+          </Button>
+          <Button className="admin-button" variant="primary" type="button" onClick={handleDelete}>
+            삭제
+          </Button>
+          <Link to='/admin/product'><Button className="admin-button" variant="info">목록</Button></Link>
+        </div>
+      </Form>
+    </div>
   );
 };
 

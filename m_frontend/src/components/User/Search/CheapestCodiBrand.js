@@ -70,12 +70,12 @@ const CheapestCodiBrand = () => {
             </Table>
         </div>
         <div>
-            <p>총 가격: {data.totalPrice}</p>
+            <p className='color-blue'>총액: {data.totalPrice} 원</p>
         </div>
         
     </div>
      : <div>
-        <p>결과 없음</p>
+        <p className='no-result'>결과 없음</p>
      </div>}
     </div>
     )

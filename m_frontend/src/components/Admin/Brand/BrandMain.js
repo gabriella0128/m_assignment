@@ -36,8 +36,10 @@ const BrandMain = (props) =>{
 
 
   return(
-      <div>
-        <div class="d-flex justify-content-end">
+      <div className="wrapper">
+        <h2>Admin</h2>
+        <h5>- 브랜드 관리</h5>
+        <div className="d-flex justify-content-end mb-3">
           <Link to='/admin/brand/create'><Button variant="primary">브랜드 등록</Button></Link>
         </div>
         <div>

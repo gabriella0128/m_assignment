@@ -98,29 +98,34 @@ const BrandDetail = () => {
     return <div>Error: {error}</div>;
   }
   return (
-    <Form onSubmit={handleSubmit}>
-        {formErrors && <Alert variant="danger">{formErrors}</Alert>}
-        {submitted && <Alert variant="success">Form submitted successfully!</Alert>}
-      <Form.Group className="mb-3">
-        <Form.Label>브랜드 번호</Form.Label>
-        <Form.Control placeholder={formData.brandIdx} name="brandIdx" defaultValue={formData.brandIdx} readOnly/>
-      </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>브랜드 이름</Form.Label>
-        <Form.Control type="text"  name="brandName" defaultValue={formData.brandName} onChange={handleChange}/>
-      </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>브랜드 설명</Form.Label>
-        <Form.Control type="text" name="brandDesc" defaultValue={formData.brandDesc} onChange={handleChange}/>
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        수정
-      </Button>
-      <Button variant="primary" type="button" onClick={handleDelete}>
-        삭제
-      </Button>
-      <Link to='/admin/brand'><Button variant="info">목록</Button></Link>
-    </Form>
+    <div className="wrapper">   
+      <h5 className="mb-3">브랜드 상세 (수정, 삭제 가능)</h5>
+      <Form onSubmit={handleSubmit}>
+          {formErrors && <Alert variant="danger">{formErrors}</Alert>}
+          {submitted && <Alert variant="success">Form submitted successfully!</Alert>}
+        <Form.Group className="mb-3">
+          <Form.Label>브랜드 번호</Form.Label>
+          <Form.Control className="readonly" placeholder={formData.brandIdx} name="brandIdx" defaultValue={formData.brandIdx} readOnly/>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>브랜드 이름</Form.Label>
+          <Form.Control type="text"  name="brandName" defaultValue={formData.brandName} onChange={handleChange}/>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>브랜드 설명</Form.Label>
+          <Form.Control type="text" name="brandDesc" defaultValue={formData.brandDesc} onChange={handleChange}/>
+        </Form.Group>
+        <div className='button-list gap-2'>
+          <Button className="admin-button" variant="primary" type="submit">
+            수정
+          </Button>
+          <Button className="admin-button" variant="primary" type="button" onClick={handleDelete}>
+            삭제
+          </Button>
+          <Link to='/admin/brand'><Button className="admin-button" variant="info">목록</Button></Link>
+        </div>  
+      </Form>
+    </div>
   );
 };
 

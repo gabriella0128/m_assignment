@@ -84,32 +84,40 @@ const ProductCreate = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-        {formErrors && <Alert variant="danger">{formErrors}</Alert>}
-        {submitted && <Alert variant="success">Form submitted successfully!</Alert>}
-      <Form.Group className="mb-3">
-        <BrandSelect selectedIdx={brandSelectedIdx} onSelectChange={handleBrandSelectChange} />
-      </Form.Group>
-      <Form.Group className="mb-3">
-        <CategorySelect selectedIdx={categorySelectedIdx} onSelectChange={handleCategorySelectChange} />
-      </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>상품명</Form.Label>
-        <Form.Control type="text"  name="productName" onChange={handleChange}/>
-      </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>가격</Form.Label>
-        <Form.Control type="number"  name="productPrice" onChange={handleChange}/>
-      </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>상품 설명</Form.Label>
-        <Form.Control type="text" name="productDesc" onChange={handleChange}/>
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        등록
-      </Button>
-      <Link to='/admin/product'><Button variant="info">목록</Button></Link>
-    </Form>
+    <div className="wrapper">
+      <h5 className="mb-3">상품 등록</h5>
+      <Form onSubmit={handleSubmit}>
+          {formErrors && <Alert variant="danger">{formErrors}</Alert>}
+          {submitted && <Alert variant="success">Form submitted successfully!</Alert>}
+        <div className="select-wrapper">
+          <h6>브랜드, 카테고리를 선택하세요</h6>
+        <Form.Group className="mb-3">
+          <BrandSelect selectedIdx={brandSelectedIdx} onSelectChange={handleBrandSelectChange} />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <CategorySelect selectedIdx={categorySelectedIdx} onSelectChange={handleCategorySelectChange} />
+        </Form.Group>
+        </div> 
+        <Form.Group className="mb-3">
+          <Form.Label>상품명</Form.Label>
+          <Form.Control type="text"  name="productName" onChange={handleChange}/>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>가격</Form.Label>
+          <Form.Control type="number"  name="productPrice" onChange={handleChange}/>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>상품 설명</Form.Label>
+          <Form.Control type="text" name="productDesc" onChange={handleChange}/>
+        </Form.Group>
+        <div className="button-list gap-2">
+          <Button className="admin-button" variant="primary" type="submit">
+            등록
+          </Button>
+          <Link to='/admin/product'><Button className="admin-button" variant="info">목록</Button></Link>
+        </div>
+      </Form>
+    </div>
   );
 }
 

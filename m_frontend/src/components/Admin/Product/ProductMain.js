@@ -36,8 +36,10 @@ const ProductMain = (props) =>{
 
 
   return(
-      <div>
-        <div class="d-flex justify-content-end">
+      <div className="wrapper">
+         <h2>Admin</h2>
+         <h5>- 상품 관리</h5>
+        <div class="d-flex justify-content-end mb-4">
           <Link to='/admin/product/create'><Button variant="primary">상품 등록</Button></Link>
         </div>
         <div>
@@ -65,7 +67,7 @@ const ProductMain = (props) =>{
         </Table>
       </div>
       <div className="d-flex justify-content-center">
-          <Link to='/admin'><Button variant="info">Admin 메인</Button></Link>
+          <Link to='/admin'><Button className="admin-button" variant="info">Admin 메인</Button></Link>
       </div>
     </div>
     )

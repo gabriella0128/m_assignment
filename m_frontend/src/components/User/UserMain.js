@@ -8,7 +8,7 @@ import LowestAndHighestPricesForACategory from './Search/LowestAndHighestPricesF
 
 const UserMain = (props) => {
     return (
-        <div className="d-grid gap-2">
+        <div className="wrapper">
             <div>
                 <Tabs
                 defaultActiveKey="cheapestProductsPerCategory"
@@ -25,8 +25,8 @@ const UserMain = (props) => {
                 </Tab>
                 </Tabs>
             </div>
-            <div>
-                <Link to='/'><Button variant='primary'>HOME</Button></Link>
+            <div className="button-list gap-2">
+                <Link to='/'><Button className="admin-button" variant='primary'>HOME</Button></Link>
             </div>
         </div>
       );

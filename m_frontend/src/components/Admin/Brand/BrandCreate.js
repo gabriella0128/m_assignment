@@ -56,10 +56,12 @@ const BrandCreate = () => {
     };
     
     return (
+      <div className="wrapper">
+        <h5 className="mb-4">브랜드 등록</h5>
         <Form onSubmit={handleSubmit}>
             {formErrors && <Alert variant="danger">{formErrors}</Alert>}
             {submitted && <Alert variant="success">Form submitted successfully!</Alert>}
-          <Form.Group className="mb-5">
+          <Form.Group className="mb-2">
             <Form.Label>브랜드 이름</Form.Label>
             <Form.Control type="text"  name="brandName" onChange={handleChange}/>
           </Form.Group>
@@ -67,11 +69,14 @@ const BrandCreate = () => {
             <Form.Label>브랜드 설명</Form.Label>
             <Form.Control type="text" name="brandDesc" onChange={handleChange}/>
           </Form.Group>
-          <Button variant="primary" type="submit">
-            등록
-          </Button>
-          <Link to='/admin/brand'><Button variant="info">목록</Button></Link>
+          <div className="button-list gap-2">
+            <Button className="admin-button" variant="primary" type="submit">
+              등록
+            </Button>
+            <Link to='/admin/brand'><Button className="admin-button" variant="info">목록</Button></Link>
+          </div>
         </Form>
+      </div>  
       );
 }
 

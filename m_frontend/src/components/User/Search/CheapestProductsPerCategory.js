@@ -67,7 +67,7 @@ const CheapestProductsPerCategory = () => {
               ))}
             </tbody>
           </Table>
-          <p>총액 : { data.totalPrice }</p>
+          <p className='color-blue'>총액 : { data.totalPrice } 원</p>
           </div>
           :
           <div>

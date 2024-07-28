@@ -72,19 +72,26 @@ const LowestAndHighestPricesForACategory = () => {
             <div>
             <Form onSubmit={handleSubmit}>
                 {formErrors && <Alert variant="danger">{formErrors}</Alert>}
-            <Form.Group className="mb-5">
+                <div className='select-wrapper'>
+                <h6>카테고리를 선택하세요</h6>  
+            <Form.Group>
                 <CategorySelect selectedIdx={categorySelectedIdx} onSelectChange={handleCategorySelectChange}/>
             </Form.Group>
-            <Button variant="primary" type="submit">
-                검색
-            </Button>
+            </div>
+
+            <div className='button-list'>
+              <Button className="mb-5 admin-button"variant="primary" type="submit">
+                  검색
+              </Button>
+            </div>
+
             </Form>
             </div>
             <div>
               {searchResult.searchResultFetch ?
                 <div>
-                  <div>
-                    <p>최저가</p>
+                  <div className='min-price'>
+                    <p className='price'>최저가</p>
                     <Table striped bordered hover size="sm">
                       <thead>
                         <tr>
@@ -103,7 +110,7 @@ const LowestAndHighestPricesForACategory = () => {
                     </Table>
                   </div>
                   <div>
-                    <p>최고가</p>
+                    <p className='price'>최고가</p>
                     <Table striped bordered hover size="sm">
                       <thead>
                         <tr>
@@ -123,7 +130,7 @@ const LowestAndHighestPricesForACategory = () => {
                   </div>
                 </div> :
                 <div>
-                  <p>검색결과 없음</p>
+                  <p className='no-result'>검색결과 없음</p>
                 </div>
                 }
             </div>
