@@ -5,6 +5,7 @@
  - 백엔드 프로젝트 구동 시 resources 폴더 내 sql 문이 자동 수행되어 기존 데이터 삭제 후 과제에서 제공한 기본 데이터가 새롭게 다시 셋팅되도록 구현
    
 [프로젝트 실행 방법]
+
 Git repository 에서 프로젝트 clone (git clone https://github.com/gabriella0128/m_assignment.git)
 
     1. Backend Project 실행
