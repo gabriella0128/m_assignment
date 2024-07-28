@@ -5,7 +5,8 @@ import React, { useState, useEffect } from 'react';
 const CheapestProductsPerCategory = () => {
     const [data, setData] = useState({
       'dataFetchResult' : false,
-      'itemList' : []
+      'itemList' : [],
+      'totalPrice' : 0
     });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -18,7 +19,8 @@ const CheapestProductsPerCategory = () => {
         if(response.data.result === true){
           setData({
             'dataFetchResult' : true,
-            'itemList' : response.data.items
+            'itemList' : response.data.items,
+            'totalPrice' : response.data.totalPrice
           });
         }
         
@@ -65,6 +67,7 @@ const CheapestProductsPerCategory = () => {
               ))}
             </tbody>
           </Table>
+          <p>총액 : { data.totalPrice }</p>
           </div>
           :
           <div>

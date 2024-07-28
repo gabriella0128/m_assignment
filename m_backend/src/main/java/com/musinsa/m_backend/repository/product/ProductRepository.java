@@ -16,10 +16,10 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     @Query("SELECT p FROM ProductEntity p WHERE p.brand.brandIdx = :brandIdx")
     List<ProductEntity> findProductByBrandIdx(@Param("brandIdx") Long brandIdx);
 
-    @Query("SELECT p FROM ProductEntity p WHERE p.category.categoryIdx = :categoryIdx ORDER BY p.productPrice DESC LIMIT 1")
+    @Query("SELECT p FROM ProductEntity p WHERE p.category.categoryIdx = :categoryIdx ORDER BY p.productPrice DESC, p.brand.brandIdx DESC LIMIT 1")
     Optional<ProductEntity> findMaxPriceProductByCategoryIdx(@Param("categoryIdx") Long categoryIdx);
 
-    @Query("SELECT p FROM ProductEntity p WHERE p.category.categoryIdx = :categoryIdx ORDER BY p.productPrice ASC LIMIT 1")
+    @Query("SELECT p FROM ProductEntity p WHERE p.category.categoryIdx = :categoryIdx ORDER BY p.productPrice ASC, p.brand.brandIdx DESC LIMIT 1")
     Optional<ProductEntity> findMinPriceProductByCategoryIdx(@Param("categoryIdx") Long categoryIdx);
 
     @Query(value = "SELECT EXISTS (SELECT 1 FROM `product` p WHERE p.brand_idx = :brandIdx AND p.category_idx = :categoryIdx AND p.use_yn = true)", nativeQuery = true)
