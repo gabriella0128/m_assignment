@@ -1,6 +1,5 @@
 package com.musinsa.m_backend.service;
 
-import com.musinsa.m_backend.dto.BrandProcessDto;
 import com.musinsa.m_backend.dto.BrandReadDto;
 import com.musinsa.m_backend.dto.base.BrandDto;
 import com.musinsa.m_backend.service.dtoService.BrandService;

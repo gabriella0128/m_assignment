@@ -39,31 +39,30 @@ public class SearchService {
                         .build();
             }
 
-            Map<Long,List<ProductDto.Info>> cheapestProductsMapGroupedByBrandIdx = new HashMap<>();
+            Map<Long, List<ProductDto.Info>> cheapestProductsMapGroupedByBrandIdx = brandsWithAllCategories.stream()
+                .collect(Collectors.toMap(
+                    brandIdx -> brandIdx,
+                    brandIdx -> categoryIdxs.stream()
+                        .map(categoryIdx -> productService.findMinPriceProductByBrandIdxAndCategoryIdx(brandIdx, categoryIdx))
+                        .toList()
+                ));
 
-            brandsWithAllCategories.forEach(brandIdx -> cheapestProductsMapGroupedByBrandIdx.put(brandIdx, categoryIdxs.stream().map(categoryIdx -> productService.findMinPriceProductByBrandIdxAndCategoryIdx(brandIdx, categoryIdx)).toList()));
+            Optional<Map.Entry<Long, List<ProductDto.Info>>> lowestTotalPriceEntryOptional = cheapestProductsMapGroupedByBrandIdx.entrySet().stream()
+                .min(Comparator.comparingDouble(entry -> entry.getValue().stream()
+                    .mapToDouble(ProductDto.Info::getProductPrice)
+                    .sum()));
 
-            List<Map.Entry<Long, List<ProductDto.Info>>> entryList = cheapestProductsMapGroupedByBrandIdx.entrySet().stream()
-                    .toList();
+            Map.Entry<Long, List<ProductDto.Info>> lowestTotalPriceEntry = lowestTotalPriceEntryOptional.orElseThrow();
 
+            Long lowestTotalPriceBrandIdx = lowestTotalPriceEntry.getKey();
+            BrandDto.Info lowestTotalPriceBrand = brandService.findBrandByBrandIdx(lowestTotalPriceBrandIdx);
 
-            Optional<Map.Entry<Long, List<ProductDto.Info>>> lowestTotalPriceEntry = entryList.stream()
-                    .min(Comparator.comparingDouble(entry -> entry.getValue().stream()
-                            .mapToDouble(ProductDto.Info::getProductPrice)
-                            .sum()));
-
-
-
-            if (lowestTotalPriceEntry.isPresent()) {
-                Long lowestTotalPriceBrandIdx = lowestTotalPriceEntry.get().getKey();
-                BrandDto.Info lowestTotalPriceBrand = brandService.findBrandByBrandIdx(lowestTotalPriceBrandIdx);
-
-                double lowestTotalPrice = lowestTotalPriceEntry.get().getValue().stream()
+            double lowestTotalPrice = lowestTotalPriceEntry.getValue().stream()
                         .mapToDouble(ProductDto.Info::getProductPrice)
                         .sum();
-                List<ProductDto.Info> productList = lowestTotalPriceEntry.get().getValue();
+            List<ProductDto.Info> productList = lowestTotalPriceEntry.getValue();
 
-                List<SearchDto.CheapestCodiBrandItem> items = productList.stream().map(product -> SearchDto.CheapestCodiBrandItem.builder()
+            List<SearchDto.CheapestCodiBrandItem> items = productList.stream().map(product -> SearchDto.CheapestCodiBrandItem.builder()
                         .productIdx(product.getProductIdx())
                         .productName(product.getProductName())
                         .productPrice(product.getProductPrice())
@@ -72,24 +71,13 @@ public class SearchService {
                         .categoryName(categoryService.findCategoryByCategoryIdx(product.getCategoryIdx()).getCategoryName())
                         .build()).toList();
 
-                return SearchDto.SearchCheapestCodiBrandResponse.builder()
+            return SearchDto.SearchCheapestCodiBrandResponse.builder()
                         .result(true)
                         .reason("SUCCESS")
                         .brandIdx(lowestTotalPriceBrandIdx)
                         .brandName(lowestTotalPriceBrand.getBrandName())
                         .totalPrice(lowestTotalPrice)
                         .items(items).build();
-
-            } else {
-                return SearchDto.SearchCheapestCodiBrandResponse
-                        .builder()
-                        .result(false)
-                        .reason("No Codi Found")
-                        .build();
-            }
-
-
-
 
         }catch (Exception e){
             e.printStackTrace();
@@ -100,8 +88,6 @@ public class SearchService {
                 .result(false)
                 .reason("Unexpected Error")
                 .build();
-
-
 
     }
 
@@ -223,16 +209,5 @@ public class SearchService {
         return categoryIds.stream()
                 .allMatch(categoryIdx -> productService.existProductByBrandIdxAndCategoryIdx(brandIdx, categoryIdx));
     }
-
-    private List<ProductDto.Info> findMinPriceProductsByBrandIdx(Long brandIdx, Set<Long> categoryIdxs){
-
-       return categoryIdxs.stream().map(categoryIdx -> productService.findMinPriceProductByBrandIdxAndCategoryIdx(brandIdx, categoryIdx))
-                .collect(Collectors.toList());
-    }
-
-
-
-
-
 
 }
